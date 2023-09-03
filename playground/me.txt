@@ -1,5 +1,0 @@
-{{#user}}
-Name: Akshita
-Skills: HTML, CSS, JS, React.js, jQuery, nodejs, mongoDB, mongoose etc.
-Email: akshita1608@gmail.com
-{{/user}}
