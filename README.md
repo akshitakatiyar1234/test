@@ -3,10 +3,10 @@
 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Robot.png" alt="Robot" width="175" height="175" />
 </p>
 
-_Hey there, Friend!
-This project is still in the &quot;just for friends&quot; stage. If you want to see what we&#39;re messing with and have some thoughts, take a look at the code._
+*Hey there, Friend!
+This project is still in the &quot;just for friends&quot; stage. If you want to see what we&#39;re messing with and have some thoughts, take a look at the code.* 
 
-_We'd love to incorporate your ideas or contributions. You can drop me a line at- ✉️ `anurag@openagent.dev`_
+*We'd love to incorporate your ideas or contributions. You can drop me a line at- ✉️  ` anurag@openagent.dev `*
 
 <h1 id="-why-we-started-dotagent-"><strong>Why we started dotagent?</strong></h1>
 
@@ -15,8 +15,11 @@ _We'd love to incorporate your ideas or contributions. You can drop me a line at
 
 ![-----------------------------------------------------](https://github.com/dotagent-ai/openagent/blob/911fa336d5c5647ccbd45471f6bc5c2f22d1f45d/assets/divider.gif)
 
+
 <h1 id="what-is-openagent-">What is OpenAgent ?</h1>
 <p>OpenAgent is a library of modular components and an orchestration framework. Inspired by a microservices approach, it gives developers all the components they need to build robust, stable &amp; reliable AI applications and experimental autonomous agents.</p>
+
+
 
 <h2 id="modularity"> 🧱 Modularity</h2>
 <ul>
@@ -47,22 +50,22 @@ _We'd love to incorporate your ideas or contributions. You can drop me a line at
 </ul>
 
 ![-----------------------------------------------------](https://github.com/dotagent-ai/openagent/blob/911fa336d5c5647ccbd45471f6bc5c2f22d1f45d/assets/divider.gif)
-
 ## Installation
 
 ### Step 1: Install Poetry
 
 Poetry is used for dependency management in this project. Please note that Poetry has some compatibility issues with Conda.
 
-`pip install poetry`
+`pip install poetry` 
 
 ### Step 2: Lock the Dependencies
 
-`poetry lock`
+
+`poetry lock` 
 
 ### Step 3: Install the Dependencies
 
-`poetry install`
+`poetry install` 
 
 ## Common Errors
 
@@ -70,13 +73,15 @@ Poetry is used for dependency management in this project. Please note that Poetr
 
 If you encounter an error like:
 
-`Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.`
+
+
+`Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.` 
 
 This is a very common issue with Chroma DB. You can find instructions to resolve this in the [Chroma DB tutorial](https://docs.trychroma.com/troubleshooting#sqlite).
 
 ### Code for a full-stack chat app, complete with UI.
 
-```python
+ ```python
 import openagent.compiler as compiler
 from openagent.compiler._program import Log
 from openagent import memory
@@ -86,47 +91,47 @@ load_dotenv()
 
 @ui.on_chat_start
 def start_chat():
-   compiler.llm = compiler.llms.OpenAI(model="gpt-3.5-turbo")
+    compiler.llm = compiler.llms.OpenAI(model="gpt-3.5-turbo")
 
 
 class ChatLog(Log):
-   def append(self, entry):
-       super().append(entry)
-       print(entry)
-       is_end = entry["type"] == "end"
-       is_assistant = entry["name"] == "assistant"
-       if is_end and is_assistant:
-           ui.run_sync(ui.Message(content=entry["new_prefix"]).send())
+    def append(self, entry):
+        super().append(entry)
+        print(entry)
+        is_end = entry["type"] == "end"
+        is_assistant = entry["name"] == "assistant"
+        if is_end and is_assistant:
+            ui.run_sync(ui.Message(content=entry["new_prefix"]).send())
 
 
 memory = memory.SimpleMemory()
 
 @ui.on_message
 async def main(message: str):
-   program = compiler(
-       """
-       {{#system~}}
-       You are a helpful assistant
-       {{~/system}}
+    program = compiler(
+        """
+        {{#system~}}
+        You are a helpful assistant
+        {{~/system}}
 
-       {{~#geneach 'conversation' stop=False}}
-       {{#user~}}
-       {{set 'this.user_text' (await 'user_text')  hidden=False}}
-       {{~/user}}
+        {{~#geneach 'conversation' stop=False}}
+        {{#user~}}
+        {{set 'this.user_text' (await 'user_text')  hidden=False}}
+        {{~/user}}
 
-       {{#assistant~}}
-       {{gen 'this.ai_text' temperature=0 max_tokens=300}}
-       {{~/assistant}}
-       {{~/geneach}}""", memory = memory
-   )
+        {{#assistant~}}
+        {{gen 'this.ai_text' temperature=0 max_tokens=300}}
+        {{~/assistant}}
+        {{~/geneach}}""", memory = memory
+    )
 
-   program(user_text=message, log=ChatLog())
+    program(user_text=message, log=ChatLog())
 
 
 ```
-
 The UI will look something like this:
 ![-----------------------------------------------------](./assets/chatapp.png)
 
+
+
 <hr>
-# test
